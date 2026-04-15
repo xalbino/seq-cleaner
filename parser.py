@@ -6,4 +6,3 @@ from pathlib import Path
 def parse_fasta(filepath):
     return list(SeqIO.parse(filepath, "fasta"))
 
-
