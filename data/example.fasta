@@ -1,0 +1,8 @@
+>seq1 healthy sequence
+ACGTACGTACGT
+>seq2 sequence with invalid chars
+ACGXXTGCDJNN
+>seq3 lowercase sequence
+acgtacgtacgt
+>seq4 mixed case with invalids
+AcGtXxNnBbZz
