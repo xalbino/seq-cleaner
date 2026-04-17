@@ -3,6 +3,21 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 
 def gc_content(record):
+    """
+    Function calculates the length of the shortest sequence in a fasta, the length of the longest sequence in a fasta and the average length of records inside of a fasta.
+    
+    Parameters:
+        records: fasta to analyze
+
+    Requirements: 
+        Must already be cleaned.
+
+    Returns:
+        list: [min, max, avg]
+
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
     seq_string = str(record.seq)
     gc_counter = 0
     for c in seq_string.upper():
@@ -11,6 +26,21 @@ def gc_content(record):
     return gc_counter/len(seq_string)
 
 def records_stats(records):
+    """
+    Function calculates the length of the shortest sequence in a fasta, the length of the longest sequence in a fasta and the average length of records inside of a fasta.
+    
+    Parameters:
+        records: fasta to analyze
+
+    Requirements: 
+        Must already be cleaned.
+
+    Returns:
+        list: [min, max, avg]
+
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
     max_length = 0
     min_length = float('inf')
     total_length = 0
@@ -71,6 +101,9 @@ def point_mutations(record_a, record_b)
     str_a = str(record_a.seq)
     str_b = str(record_b.seq)
 
+    if len(str_a) != len(str_b):
+        raise ValueError('Sequences must be of equal length')
+
     counter = 0
     for c in str_a:
         for d in str_b:
@@ -99,7 +132,7 @@ def check_motif_in_sequence(sequence: str, motif: str) -> int:
 
     return sequence.upper().find(motif.upper())
 
-def check_motif_positions(sequence: str, motif: str) -> list:
+def check_motif_positions(seq, motif):
     """
     Function provides a list of all occurrences of a provided motif within a given sequence.
     
@@ -115,19 +148,19 @@ def check_motif_positions(sequence: str, motif: str) -> list:
 
     Time Complexity: O(n*m), n = length of sequence, m = length of motif
 
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     pos = []
 
-    seq = sequence.upper()
-    mot = motif.upper()
+    seq_str = str(seq.seq).upper()
+    mot = str(motif.seq).upper()
 
 
     strt = 0
     
     while True:
-        idx = seq.find(mot, strt)
+        idx = seq_str.find(mot, strt)
         if idx == -1:
             break
         pos.append(idx + 1)
